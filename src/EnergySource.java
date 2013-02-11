@@ -1,12 +1,4 @@
-/***
- * Excerpted from "Programming Concurrency on the JVM",
- * published by The Pragmatic Bookshelf.
- * Copyrights apply to this code. It may not be used to create training material, 
- * courses, books, articles, and the like. Contact us if you are in doubt.
- * We make no guarantees that this code is fit for any purpose. 
- * Visit http://www.pragmaticprogrammer.com/titles/vspcon for more book information.
-***/
-package com.agiledeveloper.pcj;
+
 
 import akka.stm.Ref;
 import akka.stm.Atomic;
@@ -19,7 +11,7 @@ public class EnergySource {
   final Ref<Long> level = new Ref<Long>(MAXLEVEL);
   final Ref<Long> usageCount = new Ref<Long>(0L);
   final Ref<Boolean> keepRunning = new Ref<Boolean>(true);
-  private static final ScheduledExecutorService replenishTimer =
+  private ScheduledExecutorService replenishTimer =
     Executors.newScheduledThreadPool(10);
 
 
