@@ -4,8 +4,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class VendingMachine {
+public class VendingMachine implements Runnable {
 	 private final long MAXLEVEL = 6;
+	 private int numDays;
 	  final Ref<Long> cookies = new Ref<Long>(MAXLEVEL);
 	  final Ref<Long> candy = new Ref<Long>(MAXLEVEL);
 	  
@@ -13,24 +14,25 @@ public class VendingMachine {
 	  final Ref<Long> candyBought = new Ref<Long>();
 	 
 	  final Ref<Boolean> keepRunning = new Ref<Boolean>(true);
-	  private ScheduledExecutorService replenishTimer =
-	    Executors.newScheduledThreadPool(10);
+//	  private ScheduledExecutorService replenishTimer =
+//	    Executors.newScheduledThreadPool(10);
 
 
-	  private VendingMachine() {}
+	  private VendingMachine(int numDays) {this.numDays = numDays;}
 	  
 	  private void init() {   
-	    replenishTimer.schedule(new Runnable() {
-	      public void run() { 
-	        replenish();
-	        if (keepRunning.get()) replenishTimer.schedule(
-	          this, 1, TimeUnit.SECONDS);
-	      }
-	    }, 1, TimeUnit.SECONDS);
+//	    replenishTimer.schedule(new Runnable() {
+//	      public void run() { 
+//	        replenish();
+//	        if (keepRunning.get()) replenishTimer.schedule(
+//	          this, 1, TimeUnit.SECONDS);
+//	      }
+//	    }, 1, TimeUnit.SECONDS);\
+		  replenish();
 	  }
 	  
-	  public static VendingMachine create() {
-	    final VendingMachine vend = new VendingMachine();
+	  public static VendingMachine create(int numDays) {
+	    final VendingMachine vend = new VendingMachine(numDays);
 	    vend.init();
 	    return vend;
 	  }
@@ -87,4 +89,19 @@ public class VendingMachine {
 		      }
 		    }.execute();
 		  }
+
+	@Override
+	public void run() {
+		for (int i = 0; i < numDays/3; i++)
+		{
+			replenish();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				System.err.println("Sleep had an error");
+				e.printStackTrace();
+			}
+		}
+		
+	}
 }

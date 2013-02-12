@@ -1,12 +1,20 @@
 import java.util.Random;
-public class FatAlbert extends Eater{
+public class FatAlbert extends Eater implements Runnable{
+	
+	private VendingMachine vend;
+	private int numDays;
+	public FatAlbert(VendingMachine vend, int numDays)
+	{
+		super(vend, numDays);
+	}
 	
 	private final int MIN_VISITS = 2;
 	private final int MAX_VISITS = 4;
 	private final long NUM_COOKIES = 1;
 	private final long NUM_CANDY = 1;
 	
-	private void simulateDay(){
+	
+	public void simulateDay(){
 		
 		Random random = new Random(); 
 		
@@ -38,5 +46,15 @@ public class FatAlbert extends Eater{
 			Thread.sleep(timeLeftToday); //After eating, waits until tomorrow. 
 		} catch (InterruptedException e) {}
 
+	}
+
+
+	@Override
+	public void run() {
+		for (int i = 0; i < numDays; i++)
+		{
+			simulateDay();
+		}
+		
 	}
 }

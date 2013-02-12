@@ -1,10 +1,16 @@
 import java.util.*;
 
 
-public class CookieMonster extends Eater{
+public class CookieMonster extends Eater implements Runnable{
 
+	
 	private final int TIME_UNTIL_NEXT = 500;
 	private final long NUM_COOKIES = 1;
+	
+	public CookieMonster(VendingMachine vend, int numDays) {
+		super(vend, numDays);
+		
+	}
 	
 	private void simulateDay(){
 		
@@ -33,5 +39,14 @@ public class CookieMonster extends Eater{
 			
 		} catch (InterruptedException e) {}
 
+	}
+
+	@Override
+	public void run() {
+		for (int i = 0; i < numDays; i++)
+		{
+			simulateDay();
+		}
+		
 	}
 }
