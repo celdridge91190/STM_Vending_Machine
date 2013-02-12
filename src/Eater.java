@@ -3,7 +3,6 @@
  */
 public class Eater {
 	public static final int TIME_IN_DAY = 1000;
-	private static final EnergySource energySource = EnergySource.create();//Will need to change to "Vending machine"
 	private static final VendingMachine vend = VendingMachine.create();
 	  
 	protected boolean takeCookie(long units){
