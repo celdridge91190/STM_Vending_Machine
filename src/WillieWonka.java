@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class WillieWonka extends Eater{
 	
+	private final long NUM_CANDY = 1;
 	private void simulateDay(){
 		Random random = new Random(); 
 
@@ -11,7 +12,7 @@ public class WillieWonka extends Eater{
 		try {
 			Thread.sleep(timeUntilCandy); //Sleeps until first and only candy bar of day
 			
-			if(this.takeCandy()){
+			if(this.takeCandy(NUM_CANDY)){
 				System.out.println("        The Candy Man Can");
 			}else{
 				System.out.println("        Violet - you're turning violet");

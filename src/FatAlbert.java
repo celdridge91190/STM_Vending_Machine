@@ -3,6 +3,8 @@ public class FatAlbert extends Eater{
 	
 	private final int MIN_VISITS = 2;
 	private final int MAX_VISITS = 4;
+	private final long NUM_COOKIES = 1;
+	private final long NUM_CANDY = 1;
 	
 	private void simulateDay(){
 		
@@ -22,8 +24,8 @@ public class FatAlbert extends Eater{
 				timeLeftToday -= timeToSleep; //Keeps track of how long until day ends
 				Thread.sleep(timeToSleep); 
 				
-				gotCandy = this.takeCandy();
-				gotCookie = this.takeCookie();
+				gotCandy = this.takeCandy(NUM_CANDY);
+				gotCookie = this.takeCookie(NUM_COOKIES);
 				
 				if(gotCandy && gotCookie){
 					System.out.println("            Hey hey hey!");
