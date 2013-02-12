@@ -10,8 +10,8 @@ public class VendingMachine implements Runnable {
 	  final Ref<Long> cookies = new Ref<Long>(MAXLEVEL);
 	  final Ref<Long> candy = new Ref<Long>(MAXLEVEL);
 	  
-	  final Ref<Long> cookiesBought = new Ref<Long>();
-	  final Ref<Long> candyBought = new Ref<Long>();
+	  final Ref<Long> cookiesBought = new Ref<Long>(0L);
+	  final Ref<Long> candyBought = new Ref<Long>(0L);
 	 
 	  final Ref<Boolean> keepRunning = new Ref<Boolean>(true);
 //	  private ScheduledExecutorService replenishTimer =
